@@ -4,6 +4,11 @@ Module to manage keepalived on Debian/Ubuntu. It's not yet finished, only the VI
 
 ## Example
 
+    class {
+      "keepalived":
+        email => "root@example.com"; # array also allowed
+    }
+
     keepalived::vrrp_sync_group {
       "yuxCluster":
         members => [ "gw" ];
