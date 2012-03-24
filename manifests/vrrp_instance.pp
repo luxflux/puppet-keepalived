@@ -20,7 +20,7 @@ define keepalived::vrrp_instance(
            ensure  => present,
            manage  => true,
            content => template("keepalived/vrrp_instance.erb"),
-           file    => "${system_etc_dir}/keepalived/keepalived.conf",
+           file    => "${::system_etc_dir}/keepalived/keepalived.conf",
            require => Package["keepalived"];
     }
 

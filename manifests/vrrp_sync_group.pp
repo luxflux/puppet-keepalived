@@ -10,7 +10,7 @@ define keepalived::vrrp_sync_group(
            ensure  => present,
            manage  => true,
            content => template("keepalived/vrrp_sync_group.erb"),
-           file    => "${system_etc_dir}/keepalived/keepalived.conf",
+           file    => "${::system_etc_dir}/keepalived/keepalived.conf",
            require => Package["keepalived"];
     }
 }

@@ -17,7 +17,7 @@ class keepalived(
             ensure  => present,
             manage  => true,
             content => template("keepalived/global_defs.erb"),
-            file    => "${system_etc_dir}/keepalived/keepalived.conf",
+            file    => "${::system_etc_dir}/keepalived/keepalived.conf",
             require => Package["keepalived"];
     }
 
@@ -26,7 +26,7 @@ class keepalived(
             ensure     => running,
             require    => Package["keepalived"],
             hasrestart => true,
-            subscribe  => File["${system_etc_dir}/keepalived/keepalived.conf"];
+            subscribe  => File["${::system_etc_dir}/keepalived/keepalived.conf"];
     }
 
 }
