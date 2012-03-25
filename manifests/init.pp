@@ -26,6 +26,7 @@ class keepalived(
             ensure     => running,
             require    => Package["keepalived"],
             hasrestart => true,
+            status     => 'pgrep keepalived',
             subscribe  => File["${::system_etc_dir}/keepalived/keepalived.conf"];
     }
 
