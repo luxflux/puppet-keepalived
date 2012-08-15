@@ -1,3 +1,19 @@
 node default {
 
+  sysctl::directive {
+    'net.ipv4.conf.all.ARP_ignore':
+      value => 1;
+
+    'net.ipv4.conf.all.ARP_announce':
+      value => 2;
+  }
+
+  @@keepalived::real_server {
+    '10.10.10.20':
+      port                => 25,
+      check_type          => 'SMTP',
+      virtual_server_name => '10.10.10.10',
+      virtual_server_port => 25;
+  }
+
 }

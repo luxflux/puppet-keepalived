@@ -55,8 +55,15 @@ Vagrant::Config.run do |config|
   # # }
   #
 
-  config.vm.define :loadbalancer do |lb_config|
+  config.vm.share_folder 'puppet-conf', '/tmp/puppet-conf', 'vagrant/puppet-conf'
+
+  config.vm.provision :shell, :inline => "apt-get install puppet libsqlite3-ruby libactiverecord-ruby -y"
+  config.vm.provision :shell, :inline => "rm /etc/puppet/puppet.conf && ln -s /tmp/puppet-conf/puppet.conf /etc/puppet/puppet.conf"
+
+  config.vm.define :lb do |lb_config|
     lb_config.vm.forward_port 25, 2525
+
+    lb_config.vm.network :hostonly, "10.10.10.11"
 
     lb_config.vm.provision :puppet, :module_path => '../' do |puppet|
       puppet.manifests_path = "vagrant"
@@ -65,6 +72,9 @@ Vagrant::Config.run do |config|
   end
 
   config.vm.define :mx do |mx_config|
+
+    mx_config.vm.network :hostonly, "10.10.10.20"
+
     mx_config.vm.provision :puppet, :module_path => '../' do |puppet|
       puppet.manifests_path = "vagrant"
       puppet.manifest_file  = "mx.pp"
