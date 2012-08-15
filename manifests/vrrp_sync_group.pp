@@ -5,12 +5,12 @@
 define keepalived::vrrp_sync_group(
   $members
 ) {
-    common::concatfilepart {
-       "vrrp_sync_group_${name}":
-           ensure  => present,
-           manage  => true,
-           content => template("keepalived/vrrp_sync_group.erb"),
-           file    => "${::system_etc_dir}/keepalived/keepalived.conf",
-           require => Package["keepalived"];
-    }
+
+  concat::fragment {
+    "keepalived.vrrp_sync_group_${name}":
+      content => template("keepalived/vrrp_sync_group.erb"),
+      target  => '/etc/keepalived/keepalived.conf',
+      order   => 02;
+  }
+
 }

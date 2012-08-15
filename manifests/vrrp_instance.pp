@@ -11,17 +11,16 @@ define keepalived::vrrp_instance(
   $virtual_addresses
 ) {
 
-    if($kind != "MASTER" and $kind != "BACKUP") {
-        fail("${kind} is not allowed, only MASTER or BACKUP")
-    }
+  if($kind != "MASTER" and $kind != "BACKUP") {
+      fail("${kind} is not allowed, only MASTER or BACKUP")
+  }
 
-    common::concatfilepart {
-       "vrrp_instance_${name}":
-           ensure  => present,
-           manage  => true,
-           content => template("keepalived/vrrp_instance.erb"),
-           file    => "${::system_etc_dir}/keepalived/keepalived.conf",
-           require => Package["keepalived"];
-    }
+
+  concat::fragment {
+    "keepalived.vrrp_instance_${name}":
+      content => template("keepalived/vrrp_instance.erb"),
+      target  => '/etc/keepalived/keepalived.conf',
+      order   => 03;
+  }
 
 }
