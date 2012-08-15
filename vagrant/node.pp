@@ -21,4 +21,20 @@ node default {
                             "ffff::1 dev eth1"
                            ];
   }
+
+  keepalived::virtual_server {
+    '10.10.10.1':
+      port     => 25,
+      lb_kind  => 'DR',
+      protocol => 'TCP';
+  }
+
+  keepalived::real_server {
+    '10.10.10.2':
+      port                => 25,
+      check_type          => 'SMTP',
+      virtual_server_name => '10.10.10.1',
+      virtual_server_port => 25;
+  }
+
 }
