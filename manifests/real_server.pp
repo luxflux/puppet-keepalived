@@ -1,4 +1,6 @@
 define keepalived::real_server(
+  $virtual_server_name,
+  $virtual_server_port,
   $port,
   $weight = 10,
   $check_type,
@@ -7,9 +9,9 @@ define keepalived::real_server(
 ) {
 
   concat::fragment {
-    "keepalived.virtual_server.${name}.${port}.real_server.${name}":
+    "keepalived.virtual_server.${virtual_server_name}.${virtual_server_port}.real_server.${name}":
       content => template("keepalived/real_server.erb"),
-      target  => "/etc/keepalived/keepalived.conf.part.${name}:${port}",
+      target  => "/etc/keepalived/keepalived.conf.part.${virtual_server_name}:${virtual_server_port}",
       order   => 50;
   }
 
