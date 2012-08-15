@@ -54,9 +54,21 @@ Vagrant::Config.run do |config|
   # #               Managed by Puppet.\n"
   # # }
   #
-  config.vm.provision :puppet, :module_path => '../' do |puppet|
-    puppet.manifests_path = "vagrant"
-    puppet.manifest_file  = "node.pp"
+
+  config.vm.define :loadbalancer do |lb_config|
+    lb_config.vm.forward_port 25, 2525
+
+    lb_config.vm.provision :puppet, :module_path => '../' do |puppet|
+      puppet.manifests_path = "vagrant"
+      puppet.manifest_file  = "lb.pp"
+    end
+  end
+
+  config.vm.define :mx do |mx_config|
+    mx_config.vm.provision :puppet, :module_path => '../' do |puppet|
+      puppet.manifests_path = "vagrant"
+      puppet.manifest_file  = "mx.pp"
+    end
   end
 
 end
