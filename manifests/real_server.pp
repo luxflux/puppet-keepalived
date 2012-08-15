@@ -11,7 +11,7 @@ define keepalived::real_server(
   concat::fragment {
     "keepalived.virtual_server.${virtual_server_name}.${virtual_server_port}.real_server.${name}":
       content => template("keepalived/real_server.erb"),
-      target  => "/etc/keepalived/keepalived.conf.part.${virtual_server_name}:${virtual_server_port}",
+      target  => "/etc/keepalived/concat/virtual_server.${virtual_server_name}:${virtual_server_port}",
       order   => 50;
   }
 

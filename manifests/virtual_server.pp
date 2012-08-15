@@ -7,19 +7,19 @@ define keepalived::virtual_server(
 ) {
 
   concat {
-    "/etc/keepalived/keepalived.conf.part.${name}:${port}":
-      warn => true;
+    "/etc/keepalived/concat/virtual_server.${name}:${port}":
+      notify  => Exec['concat_keepalived.conf'];
   }
 
   concat::fragment {
     "keepalived.virtual_server.${name}.${port}.header":
       content => template("keepalived/virtual_server.header.erb"),
-      target  => "/etc/keepalived/keepalived.conf.part.${name}:${port}",
+      target  => "/etc/keepalived/concat/virtual_server.${name}:${port}",
       order   => 01;
 
     "keepalived.virtual_server.${name}.${port}.footer":
       content => template("keepalived/virtual_server.footer.erb"),
-      target  => "/etc/keepalived/keepalived.conf.part.${name}:${port}",
+      target  => "/etc/keepalived/concat/virtual_server.${name}:${port}",
       order   => 99;
   }
 

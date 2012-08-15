@@ -15,7 +15,7 @@ define keepalived::vrrp_instance(
   concat::fragment {
     "keepalived.vrrp_instance_${name}":
       content => template("keepalived/vrrp_instance.erb"),
-      target  => '/etc/keepalived/keepalived.conf',
+      target  => '/etc/keepalived/concat/top',
       order   => 03;
   }
 

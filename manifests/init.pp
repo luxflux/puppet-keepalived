@@ -14,20 +14,34 @@ class keepalived(
       require    => Package["keepalived"],
       hasrestart => true,
       status     => 'pgrep keepalived',
-      subscribe  => File["/etc/keepalived/keepalived.conf"];
+      subscribe  => File["/etc/keepalived/concat/top"];
+  }
+
+  file {
+    '/etc/keepalived/concat':
+      ensure  => directory,
+      require => Package['keepalived'];
+  }
+
+  exec {
+    'concat_keepalived.conf':
+      command     => '/bin/cat /etc/keepalived/concat/* > /etc/keepalived/keepalived.conf',
+      refreshonly => true,
+      notify      => Service['keepalived'];
   }
 
   concat {
-    '/etc/keepalived/keepalived.conf':
+    '/etc/keepalived/concat/top':
       warn    => true,
-      require => Package['keepalived'];
+      require => Package['keepalived'],
+      notify  => Exec['concat_keepalived.conf'];
   }
 
   concat::fragment {
     'keepalived.global_defs':
       content => template("keepalived/global_defs.erb"),
       order   => 01,
-      target  => '/etc/keepalived/keepalived.conf';
+      target  => '/etc/keepalived/concat/top';
   }
 
 }
