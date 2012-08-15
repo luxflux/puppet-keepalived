@@ -9,7 +9,7 @@ define keepalived::real_server(
 
   $delay_before_retry = false,
   $connect_timeout = false,
-  $bind_to = false,
+  $bindto = false,
 
   $url_path = false,
   $url_digest = false,
