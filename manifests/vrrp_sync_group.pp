@@ -1,7 +1,3 @@
-# vrrp_sync_group.pp
-#
-# $Id$
-
 define keepalived::vrrp_sync_group(
   $members
 ) {

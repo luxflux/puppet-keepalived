@@ -1,7 +1,3 @@
-# vrrp_instance.pp
-#
-# $Id$
-
 define keepalived::vrrp_instance(
   $kind,
   $interface,
