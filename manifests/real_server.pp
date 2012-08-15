@@ -1,7 +1,7 @@
 define keepalived::real_server(
   $port,
   $weight = 10,
-  $check,
+  $check_type,
   $connect_timeout = 4,
   $helo_name = "loadbalancer.healthcheck.local"
 ) {

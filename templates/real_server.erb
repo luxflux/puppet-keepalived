@@ -1,6 +1,6 @@
 real_server <%= name %> <%= port %> {
   weight <%= weight %>
-<% case check -%>
+<% case check_type -%>
 <% when 'SMTP' -%>
   SMTP_CHECK {
     connect_timeout <%= connect_timeout %>
