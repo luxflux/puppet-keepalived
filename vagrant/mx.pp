@@ -16,4 +16,15 @@ node default {
       virtual_server_port => 25;
   }
 
+  package {
+    'postfix':
+      ensure => installed;
+  }
+
+  exec {
+    'add virtual ip':
+      command => '/sbin/ip addr add 10.10.10.10/32 dev lo',
+      unless  => '/sbin/ip addr ls dev lo | grep 10.10.10.10';
+  }
+
 }
