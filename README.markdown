@@ -4,6 +4,7 @@ Module to manage keepalived on Debian/Ubuntu.
 
 ## Example
 
+### Loadbalancer
     class {
       "keepalived":
         email => "root@example.com"; # array also allowed
@@ -34,7 +35,8 @@ Module to manage keepalived on Debian/Ubuntu.
         protocol => 'TCP';
     }
 
-    keepalived::real_server {
+### Host behind loadbalancer
+    @@keepalived::real_server {
       '10.10.10.2':
         port                => 25,
         check_type          => 'SMTP',
