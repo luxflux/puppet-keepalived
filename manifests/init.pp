@@ -23,9 +23,19 @@ class keepalived(
       require => Package['keepalived'];
   }
 
+  file {
+    '/etc/keepalived/keepalived.conf':
+      ensure  => present,
+      source  => '/etc/keepalived/concat.out',
+      require => Exec['concat_keepalived.conf'];
+
+    '/etc/keepalived/concat.out':
+      notify => Exec['concat_keepalived.conf'];
+  }
+
   exec {
     'concat_keepalived.conf':
-      command     => '/bin/cat /etc/keepalived/concat/* > /etc/keepalived/keepalived.conf',
+      command     => '/bin/cat /etc/keepalived/concat/* > /etc/keepalived/concat.out',
       refreshonly => true,
       notify      => Service['keepalived'];
   }

@@ -23,4 +23,6 @@ define keepalived::virtual_server(
       order   => 99;
   }
 
+  Keepalived::Real_server <<| |>>
+
 }
