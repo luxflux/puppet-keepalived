@@ -1,4 +1,4 @@
-node default {
+node lb {
   class {
     'keepalived':
       email => "root@example.org";
