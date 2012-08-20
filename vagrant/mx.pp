@@ -1,4 +1,4 @@
-node default {
+node mx {
 
   sysctl::directive {
     'net.ipv4.conf.all.ARP_ignore':
