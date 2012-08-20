@@ -65,7 +65,7 @@ Vagrant::Config.run do |config|
 
     lb_config.vm.network :hostonly, "10.10.10.11"
 
-    lb_config.vm.host_name = 'lb-keepalived'
+    lb_config.vm.host_name = 'lb'
 
     lb_config.vm.provision :puppet, :module_path => '../' do |puppet|
       puppet.manifests_path = "vagrant"
@@ -77,7 +77,7 @@ Vagrant::Config.run do |config|
 
     mx_config.vm.network :hostonly, "10.10.10.20"
 
-    mx_config.vm.host_name = 'mx-keepalived'
+    mx_config.vm.host_name = 'mx'
 
     mx_config.vm.provision :puppet, :module_path => '../' do |puppet|
       puppet.manifests_path = "vagrant"
