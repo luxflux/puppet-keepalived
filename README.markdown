@@ -29,7 +29,8 @@ Module to manage keepalived on Debian/Ubuntu.
     }
 
     keepalived::virtual_server {
-      '10.10.10.1':
+      'mx1 smtp':
+        ip       => '10.10.10.1',
         port     => 25,
         lb_kind  => 'DR',
         protocol => 'TCP';
@@ -37,10 +38,12 @@ Module to manage keepalived on Debian/Ubuntu.
 
 ### Host behind loadbalancer
     @@keepalived::real_server {
-      '10.10.10.2':
+      "${hostname} smtp":
+        ip                  => '10.10.10.2',
         port                => 25,
         check_type          => 'SMTP',
-        virtual_server_name => '10.10.10.1',
+        virtual_server_name => 'mx1 smtp',
+        virtual_server_ip   => '10.10.10.1',
         virtual_server_port => 25;
     }
 
