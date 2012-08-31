@@ -1,4 +1,4 @@
-  real_server <%= name %> <%= port %> {
+  real_server <%= ip %> <%= port %> {
     weight <%= weight %>
 <% if inhibit_on_failure -%>
     inhibit_on_failure
