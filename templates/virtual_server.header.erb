@@ -1,6 +1,10 @@
-virtual_server <%= name %> <%= port %> {
+virtual_server <%= ip %> <%= port %> {
   delay_loop <%= delay_loop %>
   lb_algo <%= lb_algo %>
   lb_kind <%= lb_kind %>
   protocol <%= protocol %>
+  persistence_timeout <%= persistence_timeout %>
+<% if has_variable?("sorry_server") then -%>
+  sorry_server <%= sorry_server %>
+<% end -%>
 
