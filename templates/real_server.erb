@@ -13,12 +13,6 @@
         digest <%= url_digest %>
 <% end -%>
         status_code <%= url_status_code %>
-<% if nb_get_retry -%>
-        nb_get_retry <%= nb_get_retry %>
-<% end -%>
-<% if connect_port -%>
-        connect_port <%= connect_port %>
-<% end -%>
       }
 
 <% when 'SMTP' -%>
@@ -29,13 +23,17 @@
     TCP_CHECK {
       connect_port <%= connect_port %>
     }
-
 <% else -%>
 <% raise "unknown check #{check}" %>
 <% end -%>
-
 <% if connect_timeout -%>
       connect_timeout <%= connect_timeout %>
+<% end -%>
+<% if nb_get_retry -%>
+      nb_get_retry <%= nb_get_retry %>
+<% end -%>
+<% if connect_port -%>
+      connect_port <%= connect_port %>
 <% end -%>
 <% if delay_before_retry -%>
       delay_before_retry <%= delay_before_retry %>
