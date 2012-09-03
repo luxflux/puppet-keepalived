@@ -4,7 +4,7 @@ virtual_server <%= ip %> <%= port %> {
   lb_kind <%= lb_kind %>
   protocol <%= protocol %>
   persistence_timeout <%= persistence_timeout %>
-<% if has_variable?("sorry_server") then -%>
+<% if sorry_server -%>
   sorry_server <%= sorry_server %>
 <% end -%>
 
