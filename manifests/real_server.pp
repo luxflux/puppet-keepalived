@@ -10,6 +10,7 @@ define keepalived::real_server(
   $inhibit_on_failure = false,
 
   $delay_before_retry = false,
+  $nb_get_retry = false,
   $connect_timeout = false,
   $bindto = false,
 
