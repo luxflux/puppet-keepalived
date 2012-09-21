@@ -24,7 +24,7 @@
       connect_port <%= connect_port %>
     }
 <% else -%>
-<% raise "unknown check #{check}" %>
+<% raise "unknown check #{check_type}" %>
 <% end -%>
 <% if connect_timeout -%>
       connect_timeout <%= connect_timeout %>
