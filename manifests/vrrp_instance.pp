@@ -3,7 +3,7 @@ define keepalived::vrrp_instance(
   $interface,
   $virtual_router_id = 10,
   $advert_int = 1,
-  $password = undef,
+  $password = false,
   $virtual_addresses
 ) {
 
