@@ -4,10 +4,12 @@ vrrp_instance <%= name %> {
   virtual_router_id <%= virtual_router_id %>
   priority <%= kind == "MASTER" ? 200 : 100 %>
   advert_int <%= advert_int %>
+<% if password -%>
   authentication {
     auth_type pass
     auth_pass <%= password %>
   }
+<% end -%>
   virtual_ipaddress {
 <% virtual_addresses.each do |va_line| -%>
    <%= va_line %>
