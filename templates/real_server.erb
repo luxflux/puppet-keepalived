@@ -7,24 +7,11 @@
 <% case check_type -%>
 <% when 'HTTP','SSL' -%>
     <%= check_type %>_GET {
-      url {
-        path <%= url_path %>
-<% if url_digest -%>
-        digest <%= url_digest %>
-<% end -%>
-        status_code <%= url_status_code %>
-      }
-
-<% when 'SMTP' -%>
-    SMTP_CHECK {
-      helo_name <%= helo_name %>
-
-<% when 'TCP' -%>
-    TCP_CHECK {
+<% if connect_port -%>
       connect_port <%= connect_port %>
-    }
-<% else -%>
-<% raise "unknown check #{check_type}" %>
+<% end -%>
+<% if bindto -%>
+      bindto <%= bindto %>
 <% end -%>
 <% if connect_timeout -%>
       connect_timeout <%= connect_timeout %>
@@ -32,14 +19,49 @@
 <% if nb_get_retry -%>
       nb_get_retry <%= nb_get_retry %>
 <% end -%>
-<% if connect_port -%>
-      connect_port <%= connect_port %>
+<% if delay_before_retry -%>
+      delay_before_retry <%= delay_before_retry %>
+<% end -%>
+
+      url {
+        path <%= url_path %>
+<% if url_digest -%>
+        digest <%= url_digest %>
+<% end -%>
+        status_code <%= url_status_code %>
+      }
+    }
+<% when 'SMTP' -%>
+    SMTP_CHECK {
+      helo_name <%= helo_name %>
+<% if connect_timeout -%>
+      connect_timeout <%= connect_timeout %>
 <% end -%>
 <% if delay_before_retry -%>
       delay_before_retry <%= delay_before_retry %>
 <% end -%>
+<% if nb_get_retry -%>
+      retry <%= nb_get_retry %>
+<% end -%>
+<% if bindto -%>
+      host {
+        connect_ip <%= ip %>
+        connect_port <%= port %>
+        bindto <%= bindto %>
+      }
+<% end -%>
+    }
+<% when 'TCP' -%>
+    TCP_CHECK {
+      connect_port <%= connect_port %>
 <% if bindto -%>
       bindto <%= bindto %>
 <% end -%>
+<% if connect_timeout -%>
+      connect_timeout <%= connect_timeout %>
+<% end -%>
     }
+<% else -%>
+<% raise "unknown check #{check_type}" %>
+<% end -%>
   }
