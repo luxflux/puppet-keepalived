@@ -15,5 +15,20 @@ vrrp_instance <%= name %> {
    <%= va_line %>
 <% end -%>
   }
+<% if notify_master -%>
+  notify_master "<%= notify_master %>  
+<% end -%>
+<% if notify_backup -%>
+  notify_backup "<%= notify_backup %>
+<% end -%>
+<% if notify_fault -%>
+  notify_fault "<%= notify_fault %>
+<% end -%>
+<% if notify -%>
+  notify "<%= notify %>
+<% end -%>
+<% if smtp_alert -%>
+  smtp_alert
+<% end -%>
 }
 

@@ -4,7 +4,12 @@ define keepalived::vrrp_instance(
   $virtual_router_id = 10,
   $advert_int = 1,
   $password = false,
-  $virtual_addresses
+  $virtual_addresses,
+  $notify_master,
+  $notify_backup,
+  $notify_fault,
+  $notify,
+  $smtp_alert = false
 ) {
 
   if($kind != "MASTER" and $kind != "BACKUP") {
