@@ -6,7 +6,8 @@ define keepalived::virtual_server(
   $lb_kind,
   $port,
   $protocol,
-  $ip
+  $ip,
+  $bindto = false
 ) {
 
   concat {
@@ -26,6 +27,11 @@ define keepalived::virtual_server(
       order   => 99;
   }
 
-  Keepalived::Real_server <<| virtual_server_name == $name |>>
-
+  if $bindto {
+    Keepalived::Real_server <<| virtual_server_name == $name |>> {
+      bindto => $bindto
+    }
+  } else {
+    Keepalived::Real_server <<| virtual_server_name == $name |>>
+  }
 }
