@@ -5,10 +5,10 @@ define keepalived::vrrp_instance(
   $advert_int = 1,
   $password = false,
   $virtual_addresses,
-  $notify_master,
-  $notify_backup,
-  $notify_fault,
-  $notify,
+  $notify_master = false,
+  $notify_backup = false,
+  $notify_fault = false,
+  $notify_all = false,
   $smtp_alert = false
 ) {
 

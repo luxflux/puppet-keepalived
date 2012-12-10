@@ -24,8 +24,8 @@ vrrp_instance <%= name %> {
 <% if notify_fault -%>
   notify_fault "<%= notify_fault %>
 <% end -%>
-<% if notify -%>
-  notify "<%= notify %>
+<% if notify_all -%>
+  notify "<%= notify_all %>
 <% end -%>
 <% if smtp_alert -%>
   smtp_alert
