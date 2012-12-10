@@ -6,7 +6,6 @@ define keepalived::real_server(
   $port,
   $weight = 10,
   $check_type,
-  $connect_timeout = 4,
   $inhibit_on_failure = false,
 
   $delay_before_retry = false,
