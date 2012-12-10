@@ -6,17 +6,16 @@ define keepalived::real_server(
   $port,
   $weight = 10,
   $check_type,
-  $connect_timeout = 4,
   $inhibit_on_failure = false,
 
-  $delay_before_retry = false,
-  $nb_get_retry = false,
-  $connect_timeout = false,
+  $delay_before_retry = 3,
+  $nb_get_retry = 3,
+  $connect_timeout = 3,
   $bindto = false,
 
-  $url_path = false,
+  $url_path = '/',
   $url_digest = false,
-  $url_status_code = false,
+  $url_status_code = '200',
 
   $connect_port = false,
 
