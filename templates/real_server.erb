@@ -53,7 +53,7 @@
     }
 <% when 'TCP' -%>
     TCP_CHECK {
-      connect_port <%= connect_port %>
+      connect_port <%= connect_port || port %>
 <% if bindto -%>
       bindto <%= bindto %>
 <% end -%>
