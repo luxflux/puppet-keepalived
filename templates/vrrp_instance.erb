@@ -2,7 +2,7 @@ vrrp_instance <%= name %> {
   state <%= kind %>
   interface <%= interface %>
   virtual_router_id <%= virtual_router_id %>
-  priority <%= kind == "MASTER" ? 200 : 100 %>
+  priority <%= priority_real %>
   advert_int <%= advert_int %>
 <% if password -%>
   authentication {
