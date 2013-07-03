@@ -2,6 +2,7 @@ define keepalived::vrrp_instance(
   $kind,
   $interface,
   $virtual_router_id = 10,
+  $priority = undef,
   $advert_int = 1,
   $password = false,
   $virtual_addresses,
@@ -16,6 +17,15 @@ define keepalived::vrrp_instance(
       fail("${kind} is not allowed, only MASTER or BACKUP")
   }
 
+  if($priority == undef) {
+    $priority_real = $kind ? {
+      'MASTER' => 200,
+      'BACKUP' => 100,
+    }
+  }
+  else {
+    $priority_real = $priority
+  }
 
   concat::fragment {
     "keepalived.vrrp_instance_${name}":
