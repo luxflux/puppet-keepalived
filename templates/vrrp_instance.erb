@@ -1,33 +1,33 @@
-vrrp_instance <%= name %> {
-  state <%= kind %>
-  interface <%= interface %>
-  virtual_router_id <%= virtual_router_id %>
-  priority <%= priority_real %>
-  advert_int <%= advert_int %>
-<% if password -%>
+vrrp_instance <%= @name %> {
+  state <%= @kind %>
+  interface <%= @interface %>
+  virtual_router_id <%= @virtual_router_id %>
+  priority <%= @priority_real %>
+  advert_int <%= @advert_int %>
+<% if @password -%>
   authentication {
     auth_type pass
-    auth_pass <%= password %>
+    auth_pass <%= @password %>
   }
 <% end -%>
   virtual_ipaddress {
-<% virtual_addresses.each do |va_line| -%>
+<% @virtual_addresses.each do |va_line| -%>
    <%= va_line %>
 <% end -%>
   }
-<% if notify_master -%>
-  notify_master "<%= notify_master %>  
+<% if @notify_master -%>
+  notify_master "<%= @notify_master %>
 <% end -%>
-<% if notify_backup -%>
-  notify_backup "<%= notify_backup %>
+<% if @notify_backup -%>
+  notify_backup "<%= @notify_backup %>
 <% end -%>
-<% if notify_fault -%>
-  notify_fault "<%= notify_fault %>
+<% if @notify_fault -%>
+  notify_fault "<%= @notify_fault %>
 <% end -%>
-<% if notify_all -%>
-  notify "<%= notify_all %>
+<% if @notify_all -%>
+  notify "<%= @notify_all %>
 <% end -%>
-<% if smtp_alert -%>
+<% if @smtp_alert -%>
   smtp_alert
 <% end -%>
 }

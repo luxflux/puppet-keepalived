@@ -1,67 +1,67 @@
-  real_server <%= ip %> <%= port %> {
-    weight <%= weight %>
-<% if inhibit_on_failure -%>
+  real_server <%= @ip %> <%= @port %> {
+    weight <%= @weight %>
+<% if @inhibit_on_failure -%>
     inhibit_on_failure
 <% end -%>
 
 <% case check_type -%>
 <% when 'HTTP','SSL' -%>
-    <%= check_type %>_GET {
+    <%= @check_type %>_GET {
 <% if connect_port -%>
-      connect_port <%= connect_port %>
+      connect_port <%= @connect_port %>
 <% end -%>
-<% if bindto -%>
-      bindto <%= bindto %>
+<% if @bindto -%>
+      bindto <%= @bindto %>
 <% end -%>
-<% if connect_timeout -%>
-      connect_timeout <%= connect_timeout %>
+<% if @connect_timeout -%>
+      connect_timeout <%= @connect_timeout %>
 <% end -%>
-<% if nb_get_retry -%>
-      nb_get_retry <%= nb_get_retry %>
+<% if @nb_get_retry -%>
+      nb_get_retry <%= @nb_get_retry %>
 <% end -%>
-<% if delay_before_retry -%>
-      delay_before_retry <%= delay_before_retry %>
+<% if @delay_before_retry -%>
+      delay_before_retry <%= @delay_before_retry %>
 <% end -%>
 
       url {
-        path <%= url_path %>
-<% if url_digest -%>
-        digest <%= url_digest %>
+        path <%= @url_path %>
+<% if @url_digest -%>
+        digest <%= @url_digest %>
 <% end -%>
-        status_code <%= url_status_code %>
+        status_code <%= @url_status_code %>
       }
     }
 <% when 'SMTP' -%>
     SMTP_CHECK {
-      helo_name <%= helo_name %>
-<% if connect_timeout -%>
-      connect_timeout <%= connect_timeout %>
+      helo_name <%= @helo_name %>
+<% if @connect_timeout -%>
+      connect_timeout <%= @connect_timeout %>
 <% end -%>
-<% if delay_before_retry -%>
-      delay_before_retry <%= delay_before_retry %>
+<% if @delay_before_retry -%>
+      delay_before_retry <%= @delay_before_retry %>
 <% end -%>
-<% if nb_get_retry -%>
-      retry <%= nb_get_retry %>
+<% if @nb_get_retry -%>
+      retry <%= @nb_get_retry %>
 <% end -%>
-<% if bindto -%>
+<% if @bindto -%>
       host {
-        connect_ip <%= ip %>
-        connect_port <%= port %>
-        bindto <%= bindto %>
+        connect_ip <%= @ip %>
+        connect_port <%= @port %>
+        bindto <%= @bindto %>
       }
 <% end -%>
     }
 <% when 'TCP' -%>
     TCP_CHECK {
-      connect_port <%= connect_port || port %>
-<% if bindto -%>
-      bindto <%= bindto %>
+      connect_port <%= @connect_port || @port %>
+<% if @bindto -%>
+      bindto <%= @bindto %>
 <% end -%>
-<% if connect_timeout -%>
-      connect_timeout <%= connect_timeout %>
+<% if @connect_timeout -%>
+      connect_timeout <%= @connect_timeout %>
 <% end -%>
     }
 <% else -%>
-<% raise "unknown check #{check_type}" %>
+<% raise "unknown check #{@check_type}" %>
 <% end -%>
   }
