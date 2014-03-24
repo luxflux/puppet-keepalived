@@ -1,6 +1,7 @@
 class keepalived(
   $email,
-  $smtp_server = '127.0.0.1'
+  $smtp_server = '127.0.0.1',
+  $enable = true
 ) {
 
   package {
@@ -13,6 +14,7 @@ class keepalived(
       ensure     => running,
       require    => Package["keepalived"],
       hasrestart => true,
+      enable     => $enable,
       status     => 'pgrep keepalived',
       subscribe  => File["/etc/keepalived/concat/top"];
   }
