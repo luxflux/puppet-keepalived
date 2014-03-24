@@ -1,6 +1,6 @@
-vrrp_sync_group <%= name %> {
+vrrp_sync_group <%= @name %> {
   group {
-<% members.each do |member| -%>
+<% @members.each do |member| -%>
     <%= member %>
 <% end -%>
   }
