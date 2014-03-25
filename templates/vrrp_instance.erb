@@ -16,16 +16,16 @@ vrrp_instance <%= @name %> {
 <% end -%>
   }
 <% if @notify_master -%>
-  notify_master "<%= @notify_master %>
+  notify_master "<%= @notify_master %>"
 <% end -%>
 <% if @notify_backup -%>
-  notify_backup "<%= @notify_backup %>
+  notify_backup "<%= @notify_backup %>"
 <% end -%>
 <% if @notify_fault -%>
-  notify_fault "<%= @notify_fault %>
+  notify_fault "<%= @notify_fault %>"
 <% end -%>
 <% if @notify_all -%>
-  notify "<%= @notify_all %>
+  notify "<%= @notify_all %>"
 <% end -%>
 <% if @smtp_alert -%>
   smtp_alert

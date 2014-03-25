@@ -13,8 +13,8 @@ define keepalived::vrrp_instance(
   $smtp_alert = false
 ) {
 
-  if($kind != "MASTER" and $kind != "BACKUP") {
-      fail("${kind} is not allowed, only MASTER or BACKUP")
+  if($kind != "MASTER" and $kind != "BACKUP" and $kind != "EQUAL") {
+      fail("${kind} is not allowed, only MASTER, BACKUP, or EQUAL")
   }
 
   if($priority == undef) {
