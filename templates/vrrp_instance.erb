@@ -6,7 +6,7 @@ vrrp_instance <%= @name %> {
   advert_int <%= @advert_int %>
 <% if @password -%>
   authentication {
-    auth_type pass
+    auth_type PASS
     auth_pass <%= @password %>
   }
 <% end -%>
