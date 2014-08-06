@@ -22,7 +22,11 @@ class keepalived(
   file {
     '/etc/keepalived/concat':
       ensure  => directory,
-      require => Package['keepalived'];
+      purge   => true,
+      recurse => true,
+      require => Package['keepalived'],
+      notify  => Exec['concat_keepalived.conf'];
+
   }
 
   file {
