@@ -1,3 +1,34 @@
+# == Class: keepalived
+#
+# Manage the keepalived configuration and service.
+#
+# === Parameters
+#
+# [*email*]
+#   Specify email accounts that will receive the notification email.
+#
+# [*smtp_server*]
+#   Specify the outgoing email server. (Default to: 127.0.0.1)
+#
+# [*enable*]
+#   Specify if the keepalived service should be enabled. (Default to: true)
+#
+# === Examples
+#
+#  class { 'keepalived':
+#    email => 'root@example.com',
+#  }
+#
+# === Authors
+#
+# Raffael Schmid <raffael@yux.ch>
+# Sage Imel <sage@cat.pdx.edu>
+# Marius Rieder <marius.rieder@nine.ch>
+#
+# === Copyright
+#
+# Copyright 2012 Raffael Schmid <raffael@yux.ch>
+#
 class keepalived(
   $email,
   $smtp_server = '127.0.0.1',

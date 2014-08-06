@@ -15,6 +15,13 @@ vrrp_instance <%= @name %> {
    <%= va_line %>
 <% end -%>
   }
+<% if @track_script -%>
+  track_script {
+<% @track_script.each do |tracker| -%>
+   <%= tracker %>
+<% end -%>
+  }
+<% end -%>
 <% if @notify_master -%>
   notify_master "<%= @notify_master %>"
 <% end -%>
