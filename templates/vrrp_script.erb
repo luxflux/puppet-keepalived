@@ -1,0 +1,11 @@
+vrrp_script <%= @name %> {
+  script "<%= @script %>"
+  interval <%= @interval %>
+<% if @fall -%>
+  fall <%= @fall %>
+<% end -%>
+<% if @rise -%>
+  rise <%= @rise %>
+<% end -%>
+}
+
