@@ -10,7 +10,8 @@ define keepalived::vrrp_instance(
   $notify_backup = false,
   $notify_fault = false,
   $notify_all = false,
-  $smtp_alert = false
+  $smtp_alert = false,
+  $track_script = false,
 ) {
 
   if($kind != "MASTER" and $kind != "BACKUP" and $kind != "EQUAL") {
