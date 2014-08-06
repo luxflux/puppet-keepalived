@@ -45,7 +45,6 @@
 #     delay_loop          => '5',
 #     sorry_server        => '93.184.216.118 80',
 #     persistence_timeout => 0;
-#    }
 #   }
 #
 # === Authors
