@@ -7,7 +7,8 @@ define keepalived::virtual_server(
   $port,
   $protocol,
   $ip,
-  $bindto = false
+  $bindto = false,
+  $virtualhost = undef,
 ) {
 
   concat {
